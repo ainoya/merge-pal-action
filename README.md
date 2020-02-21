@@ -4,10 +4,12 @@ This action will help your prs to get merged!
 
 # Contents
 
+- [Merge Pal](#merge-pal)
+- [Contents](#contents)
 - [Features](#features)
 - [Usage](#usage)
   - [Note about tokens](#note-about-tokens)
-  - [Quick start](#quick-start)
+  - [Quick Start](#quick-start)
   - [Configuration](#configuration)
 
 # Features
@@ -124,4 +126,7 @@ blacklist:
   - wip
   - do-not-merge
 method: squash
+statusHandler:
+  ignoreBranches:
+    - branch-you-want-to-ignore-check-status
 ```

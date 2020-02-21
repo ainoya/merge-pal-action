@@ -10,6 +10,9 @@ export interface Config {
     whitelist: string[]
     blacklist: string[]
     method?: 'merge' | 'squash' | 'rebase'
+    statusHandler: {
+        ignoreBranches: string[]
+    }
 }
 
 export interface PullRequestPayload {

@@ -7,7 +7,9 @@ export default async function statusHandler(
     config: Config,
 ) {
     const event = context.payload as StatusPayload
-    const branchNames = event.branches.map((branch) => branch.name)
+    const branchNames = event.branches
+        .map((branch) => branch.name)
+        .filter((branch) => config.statusHandler.ignoreBranches)
     console.log('Commit belongs to branches: ', branchNames)
     const prs = await Promise.all(
         branchNames.map((branch) =>

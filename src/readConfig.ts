@@ -3,7 +3,7 @@ import jsyaml from 'js-yaml'
 import { Config } from './types'
 
 export function parseConfig(rawConfig: any) {
-    const result: Config = { whitelist: [], blacklist: [], method: undefined }
+    const result: Config = { whitelist: [], blacklist: [], method: undefined, ignoreStatusBranches: [] }
     if (rawConfig && rawConfig.whitelist) {
         if (Array.isArray(rawConfig.whitelist)) {
             result.whitelist = rawConfig.whitelist
@@ -16,6 +16,13 @@ export function parseConfig(rawConfig: any) {
             result.blacklist = rawConfig.blacklist
         } else {
             throw new Error('`blacklist` should be an array')
+        }
+    }
+    if (rawConfig && rawConfig.statusHandler && rawConfig.statusHandler.ignoreBranches ) {
+        if (Array.isArray(rawConfig.statusHandler.ignoreBranches)) {
+            result.statusHandler.ignoreBranches = rawConfig.statusHandler.ignoreBranches
+        } else {
+            throw new Error('`ignoreStatusBranches` should be an array')
         }
     }
     if (rawConfig && rawConfig.method) {
